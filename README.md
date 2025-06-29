@@ -1,4 +1,4 @@
-Data Alchemist - AI-Powered Resource Allocation Configurator
+**Data Alchemist - AI-Powered Resource Allocation Configurator**
 Data Alchemist is a smart, AI-powered CSV/XLSX data processing tool built to streamline resource allocation through intelligent validation, rule generation, and natural language search. Designed to handle complex datasets involving clients, workers, and tasks, this tool empowers users to transform unstructured spreadsheets into clean, validated, and well-prioritized data.
 
 "Transform messy spreadsheets into structured insights with AI-powered validation and intelligent rule creation."
