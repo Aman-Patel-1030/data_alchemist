@@ -3,7 +3,15 @@
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { ChartNoAxesColumn, Upload, Database, Settings, Download, BarChart3 } from "lucide-react";
+import { ChartNoAxesColumn } from "lucide-react";
+import {
+  Upload,
+  Database,
+  Settings,
+  Download,
+  Sparkles,
+  BarChart3,
+} from "lucide-react";
 import DataIngestion from "@/components/data-ingestion";
 import DataGrid from "@/components/data-grid";
 import RuleBuilder from "@/components/rule-builder";
@@ -13,6 +21,7 @@ import NaturalLanguageSearch from "@/components/natural-language-search";
 import ExportPanel from "@/components/export-panel";
 import { DataProvider } from "@/contexts/data-context";
 import AIErrorCorrection from "@/components/ai-error-correction";
+
 import Dashboard from "./Dashboard";
 import Link from "next/link";
 
@@ -20,137 +29,200 @@ export default function HomePage() {
   const [activeTab, setActiveTab] = useState("dashboard");
 
   return (
+    
     <DataProvider>
-      <div className="min-h-screen bg-white">
+      
+      <div className="min-h-screen bg-white ">
+        
         {/* Header */}
-        <div className="bg-gradient-to-r from-primary to-black text-white sticky top-0 z-40">
-          <div className="container mx-auto py-4 px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap items-center justify-between gap-y-4">
-              {/* Company Name */}
-              <div className="text-3xl font-extrabold text-white tracking-wide">
-                Data Alchemist
-              </div>
+      <div className="bg-gradient-to-r from-primary  to-black text-white backdrop-blur-sm border-b border-gray-200 sticky top-0 z-40">
+  <div className="container py-4">
+   
+    <div className="flex items-center justify-between">
+      {/* Company Name */}
+     <div className="text-3xl font-extrabold px-5 py-1  text-white  backdrop:blur-sm tracking-wide border-none">
+  Data Alchemist
+</div>
 
-              {/* Nav Links */}
-              <div className="flex gap-6 text-white font-medium text-sm md:text-base">
-                <Link href="/" className="hover:text-blue-600">
-                  Home
-                </Link>
-                <Link href="/signin" className="hover:text-blue-600">
-                  Sign In
-                </Link>
-                <Link href="/about" className="hover:text-blue-600">
-                  About
-                </Link>
-                <Link href="/contact" className="hover:text-blue-600">
-                  Contact
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* Search Bar */}
+      {/* <div className="flex-1 px-6 mx-16 ">
+        <input
+          type="text"
+          placeholder="Search..."
+          className="w-full max-w-md px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div> */}
 
-        <div className="flex flex-col lg:flex-row">
-          {/* Sidebar */}
-          <div className="w-full lg:w-64 bg-white/90 border-r border-gray-200 sticky top-[88px] lg:top-[88px] z-30 h-auto lg:min-h-screen">
+      {/* Nav Links */}
+      <div className="flex gap-9 text-white font-medium">
+        <Link href="/" className="hover:text-blue-600">
+          Home
+        </Link>
+        <Link href="/signin" className="hover:text-blue-600">
+          Sign In
+        </Link>
+        <Link href="/about" className="hover:text-blue-600">
+          About
+        </Link>
+        <Link href="/contact" className="hover:text-blue-600">
+          Contact
+        </Link>
+      </div>
+    </div>
+  </div>
+</div>
+
+        <div className="flex">
+          {/* Sidebar Navigation */}
+          <div className=" fixed w-64 bg-white/90  backdrop-blur-sm border-r border-gray-200 min-h-screen top-[112px] h-full overflow-hidden ">
             <Tabs
               value={activeTab}
               onValueChange={setActiveTab}
               orientation="vertical"
-              className="w-full"
+              className="w-full "
             >
-              <TabsList className="flex lg:flex-col flex-row lg:h-auto w-full bg-transparent p-2 gap-1 overflow-x-auto">
-                {[{
-                  label: 'Dashboard', value: 'dashboard', Icon: ChartNoAxesColumn
-                }, {
-                  label: 'Data Upload', value: 'ingestion', Icon: Upload
-                }, {
-                  label: 'Data Grid', value: 'data', Icon: Database
-                }, {
-                  label: 'Rules', value: 'rules', Icon: Settings
-                }, {
-                  label: 'Priorities', value: 'priorities', Icon: BarChart3
-                }, {
-                  label: 'Export', value: 'export', Icon: Download
-                }].map(({ label, value, Icon }) => (
-                  <TabsTrigger
-                    key={value}
-                    value={value}
-                    className="w-full justify-start gap-3 px-4 py-3 data-[state=active]:text-white data-[state=active]:bg-gradient-to-br from-primary to-black hover:text-white-950 hover:bg-gray-200 transition-all duration-100"
-                  >
-                    <Icon className="h-5 w-5 data-[state=active]:text-white" />
-                    <span className="font-bold">{label}</span>
-                  </TabsTrigger>
-                ))}
+              <TabsList className="flex flex-col h-auto w-full bg-transparent p-2 gap-1">
+                
+                 <TabsTrigger
+                  value="dashboard"
+                  className="w-full justify-start gap-3 px-4 py-3 data-[state=active]:text-white data-[state=active]:bg-gradient-to-br from-primary to-black  
+                  hover:text-white-950 hover:bg-gray-200 transition-all duration-100"
+                >
+                  <ChartNoAxesColumn className="h-5 w-5 data-[state=active]:text-white" />
+                  <span className="font-bold ">Dashboard</span>
+                </TabsTrigger>
+
+                <TabsTrigger
+                  value="ingestion"
+                  className="w-full justify-start gap-3 px-4 py-3 data-[state=active]:text-white data-[state=active]:bg-gradient-to-br from-primary to-black  
+                  hover:text-white-950 hover:bg-gray-200 transition-all duration-100"
+                >
+                  <Upload className="h-5 w-5 data-[state=active]:text-white" />
+                  <span className="font-bold">Data Upload</span>
+                </TabsTrigger>
+               
+
+                <TabsTrigger
+                  value="data"
+                  className="w-full justify-start gap-3 px-4 py-3 data-[state=active]:text-white data-[state=active]:bg-gradient-to-br from-primary to-black  
+                  hover:text-white-950 hover:bg-gray-200 transition-all duration-100"
+                >
+                  <Database className="h-5 w-5 data-[state=active]:text-white" />
+                  <span className="font-bold">Data Grid</span>
+                </TabsTrigger>
+
+                <TabsTrigger
+                  value="rules"
+                  className="w-full justify-start gap-3 px-4 py-3 data-[state=active]:text-white data-[state=active]:bg-gradient-to-br from-primary to-black  
+                  hover:text-white-950 hover:bg-gray-200 transition-all duration-100"
+                >
+                  <Settings className="h-5 w-5 data-[state=active]:text-white" />
+                  <span className="font-bold">Rules</span>
+                </TabsTrigger>
+
+                <TabsTrigger
+                  value="priorities"
+                  className="w-full justify-start gap-3 px-4 py-3 data-[state=active]:text-white data-[state=active]:bg-gradient-to-br from-primary to-black  
+                  hover:text-white-950 hover:bg-gray-200 transition-all duration-100"
+                >
+                  <BarChart3 className="h-5 w-5 data-[state=active]:text-white" />
+                  <span className="font-bold">Priorities</span>
+                </TabsTrigger>
+
+                <TabsTrigger
+                  value="export"
+                className="w-full justify-start gap-3 px-4 py-3 data-[state=active]:text-white data-[state=active]:bg-gradient-to-br from-primary to-black  
+                  hover:text-white-950 hover:bg-gray-200 transition-all duration-100"
+                >
+                  <Download className="h-5 w-5 data-[state=active]:text-white" />
+                  <span className="font-bold">Export</span>
+                </TabsTrigger>
               </TabsList>
             </Tabs>
           </div>
 
-          {/* Main Content */}
-          <div className="flex-1 p-4 sm:p-6">
+          {/* Main Content Area */}
+          <div className="ml-64 flex-1 p-6">
             <Tabs value={activeTab} onValueChange={setActiveTab}>
-              <TabsContent value="dashboard">
-                <div className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl">
+              <TabsContent value="dashboard" className="mt-0">
+                <div className="bg-white/80 backdrop-blur-sm p-6">
                   <Dashboard />
                 </div>
               </TabsContent>
-              <TabsContent value="ingestion">
-                <div className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl">
+
+              <TabsContent value="ingestion" className="mt-0">
+                <div className="bg-white/80 backdrop-blur-sm  p-6">
                   <DataIngestion />
                 </div>
               </TabsContent>
-              <TabsContent value="data">
+
+              <TabsContent value="data" className="mt-0">
                 <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
-                  <div className="xl:col-span-4">
-                    <div className="bg-white/80 backdrop-blur-sm p-4 rounded-xl">
+                  {/* Main Data Grid */}
+                  <div className="xl:col-span-4 order-2 xl:order-1">
+                    <div className="bg-white/80 backdrop-blur-sm ">
                       <DataGrid />
                     </div>
                   </div>
-                  <div className="xl:col-span-4 space-y-4">
-                    <div className="bg-white/80 p-4 rounded-xl">
+
+                  {/* Right Sidebar Components */}
+                  <div className="xl:col-span-4 order-2 xl:order-2 space-y-4">
+                    <div className="bg-white/80">
                       <ValidationSummary />
                     </div>
+
+                    {/* Mobile: Expandable sections */}
                     <div className="block lg:hidden space-y-4">
-                      <details className="group bg-white/80 backdrop-blur-sm rounded-xl border">
-                        <summary className="cursor-pointer p-4">
-                          <span className="font-medium text-black">🔍 AI Search</span>
+                      <details className="group bg-white/80  backdrop-blur-sm rounded-xl border overflow-hidden">
+                        <summary className="cursor-pointer p-4 ">
+                          <span className="font-medium text-black bg-white">
+                            🔍 AI Search
+                          </span>
                         </summary>
                         <div className="p-4">
                           <NaturalLanguageSearch />
                         </div>
                       </details>
-                      <details className="group bg-white/80 backdrop-blur-sm rounded-xl border">
-                        <summary className="cursor-pointer p-4">
-                          <span className="font-medium text-black">🤖 AI Error Correction</span>
+
+                      <details className="group bg-white/80 overflow-hidden backdrop-blur-sm rounded-xl border">
+                        <summary className="cursor-pointer p-4  ">
+                          <span className="font-medium text-black bg-white">
+                            🤖 AI Error Correction
+                          </span>
                         </summary>
                         <div className="p-4">
                           <AIErrorCorrection />
                         </div>
                       </details>
                     </div>
+
+                    {/* Desktop: Normal display */}
                     <div className="hidden lg:block space-y-4">
-                      <div className="bg-white/80 p-4 rounded-xl">
+                      <div className="bg-white/80 backdrop-blur-sm  ">
                         <NaturalLanguageSearch />
                       </div>
-                      <div className="bg-white/80 p-4 rounded-xl">
+                      <div className="bg-white/80">
                         <AIErrorCorrection />
                       </div>
                     </div>
                   </div>
                 </div>
               </TabsContent>
-              <TabsContent value="rules">
-                <div className="bg-white/80 p-4 rounded-xl">
+
+              <TabsContent value="rules" className="mt-0">
+                <div className="bg-white/80">
                   <RuleBuilder />
                 </div>
               </TabsContent>
-              <TabsContent value="priorities">
-                <div className="bg-white/80 p-4 rounded-xl">
+
+              <TabsContent value="priorities" className="mt-0">
+                <div className="bg-white/80 p-6">
                   <PrioritizationPanel />
                 </div>
               </TabsContent>
-              <TabsContent value="export">
-                <div className="bg-white/80 p-4 rounded-xl">
+
+              <TabsContent value="export" className="mt-0">
+                <div className="bg-white/80">
                   <ExportPanel />
                 </div>
               </TabsContent>
